@@ -11,7 +11,7 @@ def getMoviePlotbyTitle(db, value ):
     cursor = collection.find(query, projection)
     for record in cursor:
             print(record)
-    print("============================================================================")
+    print("****************************************************************************")
     menu(db)
 #13
 def getFrenchMovies(db ):
@@ -24,7 +24,7 @@ def getFrenchMovies(db ):
     cursor = collection.find(query, projection)
     for record in cursor:
             print(record)
-    print("============================================================================")
+    print("****************************************************************************")
     menu(db)
 
 #5
@@ -39,7 +39,7 @@ def getMoviesReleasedbyYear(db , value):
     cursor = collection.find(query, projection)
     for record in cursor:
             print(record)
-    print("============================================================================")
+    print("****************************************************************************")
     menu(db)
 #6
 def getMoviesbyGenre(db, value ):
@@ -52,7 +52,7 @@ def getMoviesbyGenre(db, value ):
     cursor = collection.find(query, projection).limit(10)
     for record in cursor:
             print(record)
-    print("============================================================================")
+    print("****************************************************************************")
     menu(db)
 #7
 def getMoviesbyTitle(db, value ):
@@ -65,7 +65,7 @@ def getMoviesbyTitle(db, value ):
     cursor = collection.find(query, projection)
     for record in cursor:
         print(record)
-    print("============================================================================")
+    print("****************************************************************************")
     menu(db)
 #14
 def getGenresbyTitle(db, value ):
@@ -78,7 +78,7 @@ def getGenresbyTitle(db, value ):
     cursor = collection.find(query, projection)
     for record in cursor:
         print(record)
-    print("============================================================================")
+    print("****************************************************************************")
     menu(db)
 #15
 def updateReview(db, value ,reviewValue):
@@ -90,7 +90,7 @@ def updateReview(db, value ,reviewValue):
     
     upRes = collection.update_one({title:value},{set:{review:reviewValue}})
     print(upRes)
-    print("============================================================================")
+    print("****************************************************************************")
     menu(db)
 #16
 def deleteReview(db, value ):
@@ -102,7 +102,7 @@ def deleteReview(db, value ):
     
     upRes = collection.update_one({title:value},{unset:{review:1}}, False, True)
     print(upRes)
-    print("============================================================================")
+    print("****************************************************************************")
     menu(db)
 #4
 def getPopularMoviesbyYear(db, value ):
@@ -115,7 +115,7 @@ def getPopularMoviesbyYear(db, value ):
     cursor = collection.find(query, projection, sort=[("popularity", pymongo.DESCENDING)]).limit(10)
     for record in cursor:
         print(record)
-    print("============================================================================")
+    print("****************************************************************************")
     menu(db)
 #3
 def getTopPopularMovies(db ):
@@ -127,7 +127,7 @@ def getTopPopularMovies(db ):
 
     for record in cursor:
         print(record)
-    print("============================================================================")
+    print("****************************************************************************")
     menu(db)
 #8
 def getMovieRatingbyId(db, value ):
@@ -146,7 +146,7 @@ def getMovieRatingbyId(db, value ):
 
     for record in cursor:
         print(record)
-    print("============================================================================")
+    print("****************************************************************************")
     menu(db)
 #12
 def getUserRatingsCount(db, value ):
@@ -162,7 +162,7 @@ def getUserRatingsCount(db, value ):
 
     for record in cursor:
         print(record)
-    print("============================================================================")
+    print("****************************************************************************")
     menu(db)
 #9
 def getMoviebyPixar(db ):
@@ -178,7 +178,7 @@ def getMoviebyPixar(db ):
     cursor = collection.find(query, projection).limit(10)
     for record in cursor:
         print(record)
-    print("============================================================================")
+    print("****************************************************************************")
     menu(db)
 #2
 def getMoviesLT120(db ):
@@ -194,7 +194,7 @@ def getMoviesLT120(db ):
     cursor = collection.find(query, projection).limit(10)
     for record in cursor:
         print(record)
-    print("============================================================================")
+    print("****************************************************************************")
     menu(db)
 #10
 def getTopMoviesbyTom(db ):
@@ -209,7 +209,7 @@ def getTopMoviesbyTom(db ):
     cursor = collection.find({cast:{elem:{eq:"Tom Hanks"}}}, projection, sort=[("popularity", pymongo.DESCENDING)]).limit(10)
     for record in cursor:
         print(record)
-    print("============================================================================")
+    print("****************************************************************************")
     menu(db)
 #11
 def getMovieCast(db, value ):
@@ -223,7 +223,7 @@ def getMovieCast(db, value ):
     cursor = collection.find(query, projection)
     for record in cursor:
         print(record)
-    print("============================================================================")
+    print("****************************************************************************")
     menu(db)
 
 def print_menu():
@@ -256,7 +256,7 @@ def menu(db):
     print("Entered Option: ", option)
     if option==1:
         value = str(input('Enter movie title: '))
-        print("============================================================================")
+        print("****************************************************************************")
         getMoviePlotbyTitle(db, value)
     if option==2:
         getMoviesLT120(db)
@@ -264,53 +264,53 @@ def menu(db):
         getTopPopularMovies(db)
     if option==4:
         value = int(input('Enter year: '))
-        print("============================================================================")
+        print("****************************************************************************")
         getPopularMoviesbyYear(db, value)
     if option==5:
         value = int(input('Enter year: '))
-        print("============================================================================")
+        print("****************************************************************************")
         getMoviesReleasedbyYear(db, value)
     if option==6:
         value = str(input('Enter Movie Genre: '))
-        print("============================================================================")
+        print("****************************************************************************")
         getMoviesbyGenre(db, value)
     if option==7:
         value = str(input('Enter movie title: '))
-        print("============================================================================")
+        print("****************************************************************************")
         getMoviesbyTitle(db, value)
     if option==8:
         value = int(input('Enter movie id: '))
-        print("============================================================================")
+        print("****************************************************************************")
         getMovieRatingbyId(db, value)
     if option==9:
-        print("============================================================================")
+        print("****************************************************************************")
         getMoviebyPixar(db)
     if option==10:
-        print("============================================================================")
+        print("****************************************************************************")
         getTopMoviesbyTom(db)
     if option==11:
         value = str(input('Enter movie title: '))
-        print("============================================================================")
+        print("****************************************************************************")
         getMovieCast(db, value)
     if option==12:
         value = int(input('Enter movie id: '))
-        print("============================================================================")
+        print("****************************************************************************")
         getUserRatingsCount(db, value)
     if option==13:
-        print("============================================================================")
+        print("****************************************************************************")
         getFrenchMovies(db)
     if option==14:
         value = str(input('Enter movie title: '))
-        print("============================================================================")
+        print("****************************************************************************")
         getGenresbyTitle(db, value)
     if option==15:
         value = str(input('Enter movie title: '))
         reviewValue = str(input('Enter review: '))
-        print("============================================================================")
+        print("****************************************************************************")
         updateReview(db, value, reviewValue)
     if option==16:
         value = str(input('Enter movie title: '))
-        print("============================================================================")
+        print("****************************************************************************")
         deleteReview(db, value)
 
 
@@ -321,7 +321,7 @@ def main():
     except:
             print("Could not connect to MongoDB")
     
-    db = conn.moviesDB
+    db = conn.movies
     menu(db)
 
 if __name__ == "__main__":
