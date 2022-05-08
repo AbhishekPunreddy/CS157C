@@ -59,7 +59,7 @@ def getMoviesbyTitle(db, value ):
     collection = db.movies_data
     id="_id"
     title="title"
-    movieId="movieId"
+    movieId="id"
     query= {title: value}
     projection={id:0,movieId:1}
     cursor = collection.find(query, projection)
