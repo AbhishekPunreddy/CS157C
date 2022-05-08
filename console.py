@@ -5,8 +5,9 @@ def getMoviePlotbyTitle(db, value ):
     id="_id"
     collection = db.movies_data
     title="title"
+    overview ="overview"
     query= {title: value}
-    projection={id:0}
+    projection={id:0, overview:1}
     cursor = collection.find(query, projection)
     for record in cursor:
             print(record)
@@ -17,7 +18,7 @@ def getFrenchMovies(db ):
     id="_id"
     collection = db.movies_data
     title="title"
-    lang ="original_languages"
+    lang ="original_language"
     query= {lang: "fr"}
     projection={id:0,title:1}
     cursor = collection.find(query, projection)
@@ -58,8 +59,9 @@ def getMoviesbyTitle(db, value ):
     collection = db.movies_data
     id="_id"
     title="title"
+    movieId="movieId"
     query= {title: value}
-    projection={id:0}
+    projection={id:0,movieId:1}
     cursor = collection.find(query, projection)
     for record in cursor:
         print(record)
@@ -120,8 +122,8 @@ def getTopPopularMovies(db ):
     collection = db.movies_data
     id="_id"
     title="title"
-
-    cursor = collection.find(sort=[("popularity", pymongo.DESCENDING)]).limit(10)
+    
+    cursor = collection.find({},{id:0,title:1},sort=[("popularity", pymongo.DESCENDING)]).limit(10)
 
     for record in cursor:
         print(record)
@@ -189,7 +191,7 @@ def getMoviesLT120(db ):
     query= {runtime:{lte:120}}
     projection={title:1,id:0}
     
-    cursor = collection.find(query, projection)
+    cursor = collection.find(query, projection).limit(10)
     for record in cursor:
         print(record)
     print("============================================================================")
@@ -226,11 +228,11 @@ def getMovieCast(db, value ):
 
 def print_menu():
     menu_option={
-        1: 'Find Movie Plot by ID', 
+        1: 'Find Movie Plot by title', 
         2: 'Find movies with duration less than 2 hours',
         3: 'Find Top 10 most popular movies of all time', 
         4: 'Find most popular movies in a year', 
-        5: 'Find all movies released in the year 2005', 
+        5: 'Find all movies released in a year', 
         6: 'Get all movie recommendations by genre', 
         7: 'Find Movie Id by title', 
         8: 'Fing average movie rating using Id',
@@ -269,7 +271,7 @@ def menu(db):
         print("============================================================================")
         getMoviesReleasedbyYear(db, value)
     if option==6:
-        value = str(input('Enter Movie Genre'))
+        value = str(input('Enter Movie Genre: '))
         print("============================================================================")
         getMoviesbyGenre(db, value)
     if option==7:
